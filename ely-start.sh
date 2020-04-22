@@ -22,11 +22,13 @@ IDLOCAL=/home/$LOGNAME/.ssh/
 
 echo "# - Checking if $IDLOCAL/id_rsa exists"
 if [ ! -f "$IDLOCAL/id_rsa" ]; then
+  echo "# - importing id_rsa"
   scp user@$IDHOST:$IDREMOTE/id_rsa $IDLOCAL/id_rsa
 fi
 
 echo "# - Checking if $IDLOCAL/id_rsa.pub exists"
 if [ ! -f "$IDLOCAL/id_rsa.pub" ]; then
+  echo "# - importing id_rsa.pub"
   scp user@$IDHOST:$IDREMOTE/id_rsa.pub $IDLOCAL/id_rsa.pub
 fi
 
@@ -34,7 +36,7 @@ fi
 #[ -f $HOME/.ssh/id_rsa ] && echo "$FILE exist" || echo "$FILE does not exist"
 
 echo "# - Checking if $IDLOCAL/id_rsa and id_rsa.pub exists"
-if [ -f "$IDLOCAL/id_rsa" && -f "$IDLOCAL/id_rsa.pub"]; then
+if [[ -f "$IDLOCAL/id_rsa" && -f "$IDLOCAL/id_rsa.pub"]]; then
   eval "$(ssh-agent -s)"
   ssh-add $IDLOCAL/id_rsa
   #read -r -p "# - Want to display(echo) id_rsa.pub? (yes)" DISPLAYRSA
