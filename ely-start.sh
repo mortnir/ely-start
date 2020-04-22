@@ -36,7 +36,8 @@ fi
 #[ -f $HOME/.ssh/id_rsa ] && echo "$FILE exist" || echo "$FILE does not exist"
 
 echo "# - Checking if $IDLOCAL/id_rsa and id_rsa.pub exists"
-if [[ -f "$IDLOCAL/id_rsa" && -f "$IDLOCAL/id_rsa.pub"]]; then
+#if [[ -f "$IDLOCAL/id_rsa" && -f "$IDLOCAL/id_rsa.pub"]]; then
+if [[ -f $IDLOCAL/id_rsa && -f $IDLOCAL/id_rsa.pub ]]; then
   eval "$(ssh-agent -s)"
   ssh-add $IDLOCAL/id_rsa
   #read -r -p "# - Want to display(echo) id_rsa.pub? (yes)" DISPLAYRSA
